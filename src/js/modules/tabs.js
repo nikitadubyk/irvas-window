@@ -27,7 +27,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
         const target = e.target;
         if (target &&
             (target.classList.contains(tabSelector.replace(/\./g, '')) || 
-        target.parentNode.classList.contains(tabSelector.replace(/\./g, '')))) {
+            target.parentNode.classList.contains(tabSelector.replace(/\./g, '')))) {
             tabs.forEach((tab, i) => {
                 if (target === tab || target.parentNode === tab) {
                     hideTabsContent();

@@ -11,7 +11,7 @@ const modals = () => {
         document.body.classList.remove('modal-open');
     }
 
-    function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverfay = true) {
+    function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
         const trigger = document.querySelectorAll(triggerSelector),
               modal = document.querySelector(modalSelector),
               close = document.querySelector(closeSelector),
@@ -38,7 +38,7 @@ const modals = () => {
         });
 
         modal.addEventListener('click', (e) => {
-            if (e.target === modal && closeClickOverfay) {
+            if (e.target === modal && closeClickOverlay) {
                 hideModal(modal);
                 windows.forEach(item => {
                     hideModal(item);

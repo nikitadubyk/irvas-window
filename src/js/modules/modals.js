@@ -15,7 +15,9 @@ const modals = (state) => {
         const trigger = document.querySelectorAll(triggerSelector),
               modal = document.querySelector(modalSelector),
               close = document.querySelector(closeSelector),
-              windows = document.querySelectorAll('[data-modal]');
+              windows = document.querySelectorAll('[data-modal]'),
+              scroll = calcScroll();
+
         trigger.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 if (e.target) {
@@ -37,8 +39,10 @@ const modals = (state) => {
                 windows.forEach(item => {
                     hideModal(item);
                 });
-    
+
+                document.body.style.marginRight = `${scroll}px`;
                 showModal(modal);
+
             });
         });
 
@@ -47,11 +51,13 @@ const modals = (state) => {
             windows.forEach(item => {
                 hideModal(item);
             });
+            document.body.style.marginRight = '0px';
         });
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal && closeClickOverlay) {
                 hideModal(modal);
+                document.body.style.marginRight = '0px';
                 windows.forEach(item => {
                     hideModal(item);
                 });
@@ -75,6 +81,21 @@ const modals = (state) => {
 
             hideModal(modal);
         }, time);
+    }
+
+    function calcScroll() {
+        let div = document.createElement('div');
+
+        div.style.width = '50px';
+        div.style.height = '50px';
+        div.style.overflowY = 'scroll';
+        div.style.visibility = 'hidden';
+
+        document.body.appendChild(div);
+        let scrollWidth = div.offsetWidth - div.clientWidth;
+        div.remove();
+
+        return scrollWidth;
     }
 
     bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');

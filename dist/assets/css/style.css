@@ -1840,3 +1840,23 @@ textarea:focus {
 .show {
   display: block;
 }
+
+.fadein {
+  animation-name: fadein;
+  animation-duration: 0.5s;
+}
+
+.fadeout {
+  animation-name: fadeout;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
